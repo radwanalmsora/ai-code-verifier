@@ -137,7 +137,7 @@ export const RULES: Rule[] = [
 ];
 
 const SEVERITY_WEIGHT: Record<Severity, number> = { error: 22, warning: 8, info: 2 };
-const GRADES: AnalysisResult["grade"][] = ["A", "B", "C", "D", "F"];
+
 
 export function analyze(code: string, language: string, file: string): AnalysisResult {
   const lines = code.split(/\r?\n/);
