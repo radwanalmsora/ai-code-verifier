@@ -10,9 +10,9 @@
   "keywords": ["ai", "copilot", "verify", "static analysis", "code review", "tests", "confidence"],
   "icon": "icons/icon-128.png",
   "galleryBanner": { "color": "#1e1b4b", "theme": "dark" },
-  "repository": { "type": "git", "url": "https://github.com/aicv/ai-code-verifier" },
-  "bugs": { "url": "https://github.com/aicv/ai-code-verifier/issues" },
-  "homepage": "https://github.com/aicv/ai-code-verifier#readme",
+  "repository": { "type": "git", "url": "https://github.com/radwanalmsora/ai-code-verifier" },
+  "bugs": { "url": "https://github.com/radwanalmsora/ai-code-verifier/issues" },
+  "homepage": "https://github.com/radwanalmsora/ai-code-verifier#readme",
   "activationEvents": [],
   "main": "./out/extension.js",
   "contributes": {
