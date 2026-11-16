@@ -1,0 +1,92 @@
+{
+  "name": "ai-code-verifier",
+  "displayName": "AI Code Verifier",
+  "description": "Verify AI-generated code before you merge it: static logic analysis, spec-vs-implementation comparison, critical test generation and a merge confidence score.",
+  "version": "1.0.0",
+  "publisher": "aicv",
+  "license": "MIT",
+  "engines": { "vscode": "^1.85.0" },
+  "categories": ["Testing", "Other", "Programming Languages"],
+  "keywords": ["ai", "copilot", "verify", "static analysis", "code review", "tests", "confidence"],
+  "icon": "icons/icon-128.png",
+  "galleryBanner": { "color": "#1e1b4b", "theme": "dark" },
+  "repository": { "type": "git", "url": "https://github.com/aicv/ai-code-verifier" },
+  "bugs": { "url": "https://github.com/aicv/ai-code-verifier/issues" },
+  "homepage": "https://github.com/aicv/ai-code-verifier#readme",
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [{
+        "id": "aiCodeVerifier",
+        "title": "AI Code Verifier",
+        "icon": "media/shield.svg"
+      }]
+    },
+    "views": {
+      "aiCodeVerifier": [
+        { "id": "aicv.findings", "name": "Findings" },
+        { "id": "aicv.summary", "name": "Confidence" }
+      ]
+    },
+    "viewsWelcome": [{
+      "view": "aicv.findings",
+      "contents": "No analysis yet.
+[Verify Current File](command:aiCodeVerifier.verifyFile)
+[Verify Selection](command:aiCodeVerifier.verifySelection)
+[Compare Spec ↔ Implementation](command:aiCodeVerifier.compareSpec)"
+    }],
+    "commands": [
+      { "command": "aiCodeVerifier.verifyFile", "title": "Verify Current File", "category": "AI Code Verifier", "icon": "media/shield.svg" },
+      { "command": "aiCodeVerifier.verifySelection", "title": "Verify Selection", "category": "AI Code Verifier", "icon": "media/shield.svg" },
+      { "command": "aiCodeVerifier.verifyWorkspace", "title": "Verify Workspace (All Supported Files)", "category": "AI Code Verifier", "icon": "media/shield.svg" },
+      { "command": "aiCodeVerifier.compareSpec", "title": "Compare Spec ↔ Implementation", "category": "AI Code Verifier" },
+      { "command": "aiCodeVerifier.generateTests", "title": "Generate Critical Tests", "category": "AI Code Verifier" },
+      { "command": "aiCodeVerifier.showReport", "title": "Open Verification Dashboard", "category": "AI Code Verifier" },
+      { "command": "aicv.revealFinding", "title": "Reveal Finding" }
+    ],
+    "menus": {
+      "editor/context": [
+        { "command": "aiCodeVerifier.verifySelection", "when": "editorHasSelection", "group": "aiCodeVerifier@1" },
+        { "command": "aiCodeVerifier.compareSpec", "group": "aiCodeVerifier@2" }
+      ],
+      "editor/title": [
+        { "command": "aiCodeVerifier.verifyFile", "when": "editorTextFocus", "group": "navigation@10" }
+      ],
+      "view/title": [
+        { "command": "aiCodeVerifier.verifyFile", "when": "view == aicv.findings", "group": "navigation@1" },
+        { "command": "aiCodeVerifier.verifyWorkspace", "when": "view == aicv.findings", "group": "navigation@2" },
+        { "command": "aiCodeVerifier.showReport", "when": "view == aicv.findings", "group": "navigation@3" }
+      ]
+    },
+    "keybindings": [
+      { "command": "aiCodeVerifier.verifyFile", "key": "ctrl+shift+v", "mac": "cmd+shift+v", "when": "editorTextFocus" }
+    ],
+    "configuration": {
+      "title": "AI Code Verifier",
+      "properties": {
+        "aiCodeVerifier.verifyOnSave": { "type": "boolean", "default": true, "description": "Re-verify the active file automatically on save." },
+        "aiCodeVerifier.languages": { "type": "array", "items": { "type": "string" }, "default": ["javascript", "typescript", "python", "java", "csharp", "go", "rust", "cpp", "c"], "description": "Languages to analyze." },
+        "aiCodeVerifier.severityThreshold": { "type": "string", "enum": ["error", "warning", "info"], "default": "info", "description": "Minimum severity shown in the Problems view and dashboard." },
+        "aiCodeVerifier.blockMergeBelowScore": { "type": "number", "default": 60, "minimum": 0, "maximum": 100, "description": "Show a merge blocker warning when confidence is below this score." }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext ts",
+    "package": "vsce package --out ai-code-verifier.vsix",
+    "publish": "vsce publish"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^2.24.0",
+    "typescript": "^5.3.3",
+    "eslint": "^8.56.0",
+    "@typescript-eslint/parser": "^6.19.0",
+    "@typescript-eslint/eslint-plugin": "^6.19.0"
+  }
+}
