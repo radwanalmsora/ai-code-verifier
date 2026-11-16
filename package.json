@@ -3,7 +3,7 @@
   "displayName": "AI Code Verifier",
   "description": "Verify AI-generated code before you merge it: static logic analysis, spec-vs-implementation comparison, critical test generation and a merge confidence score.",
   "version": "1.0.0",
-  "publisher": "aicv",
+  "publisher": "RadwanAlmsora",
   "license": "MIT",
   "engines": { "vscode": "^1.85.0" },
   "categories": ["Testing", "Other", "Programming Languages"],
