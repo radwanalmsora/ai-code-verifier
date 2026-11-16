@@ -29,13 +29,11 @@
         { "id": "aicv.summary", "name": "Confidence" }
       ]
     },
-    "viewsWelcome": [{
+        "viewsWelcome": [{
       "view": "aicv.findings",
-      "contents": "No analysis yet.
-[Verify Current File](command:aiCodeVerifier.verifyFile)
-[Verify Selection](command:aiCodeVerifier.verifySelection)
-[Compare Spec ↔ Implementation](command:aiCodeVerifier.compareSpec)"
+      "contents": "No analysis yet.\n[Verify Current File](command:aiCodeVerifier.verifyFile)\n[Verify Selection](command:aiCodeVerifier.verifySelection)\n[Compare Spec ↔ Implementation](command:aiCodeVerifier.compareSpec)"
     }],
+
     "commands": [
       { "command": "aiCodeVerifier.verifyFile", "title": "Verify Current File", "category": "AI Code Verifier", "icon": "media/shield.svg" },
       { "command": "aiCodeVerifier.verifySelection", "title": "Verify Selection", "category": "AI Code Verifier", "icon": "media/shield.svg" },
